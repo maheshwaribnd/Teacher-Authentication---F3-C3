@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark nav-style">
+        <div class="container-fluid">
+            <!-- <img src="logo.png" style="margin-right: 4px;" width="40px" height="40px"> -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" onclick="goToHome()">Home</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    
+                    <!-- <li class="nav-item">
+                        <a class="nav-link active" href="#" onclick="goToLogin()" id="sign-up-nav-link">SignUp</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" onclick="goToLogin()" id="log-in-nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" id="profile-link"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" onclick="goToSignOut()" id="log-out-nav-link">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        
+        <div id="sign-Up">
+            <form class="row g-3" id="sign-up-form">
+                <h1 class="display-6 form-title" style="text-align: center;">Teachers SignUp</h1>
+                <div class="col-md-6">
+                    <label for="firstName" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="fullname" onkeyup="signUp()" value="" required>
+                    <div class="valid-feedback" id="firstname-valid">
+                        looks Good !
+                    </div>
+                    <div class="invalid-feedback" id="firstname-invalid">
+                        please enter valid fullname
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <label for="email" class="form-label">Email</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                        <input type="text" class="form-control" id="email" onkeyup="signUp()" required>
+                    </div>
+                    <div class="valid-feedback" id="email-valid">
+                        looks Good !
+                    </div>
+                    <div class="invalid-feedback" id="email-invalid">
+                        please enter valid email
+                    </div>
+                </div>
+               
+                <div class="col-md-6">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" onkeyup="signUp()" required>
+                    <div class="invalid-feedback" id="password-invalid">
+                        Please enter password 
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPassword" onkeyup="signUp()" required>
+                    <div class="invalid-feedback" id="confirmPassword-invalid">
+                        Password does not match !
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="t-and-c" onclick="signUp()" required>
+                        <label class="form-check-label" for="t-and-c">
+                            Agree to terms and conditions
+                        </label>
+                        <div class="invalid-feedback" id="t-and-c-invalid">
+                            You must agree before submitting.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12" style="text-align: center;">
+                    <button class="btn" type="button" onclick="signUp(true)">Sign Up</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="log-In">
+            <form class="row g-3" id="log-in-form">
+                <h1 class="display-6 form-title" style="text-align: center;">Teachers LogIn</h1>
+                <div class="col-md-12">
+                    <label for="login-email" class="form-label">Email</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                        <input type="text" class="form-control" id="enteredEmail" required>
+                    </div>
+                    <div class="invalid-feedback" id="enteredEmail-invalid">
+                        please enter valid email
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <label for="login-password">Password</label>
+                    <input type="password" class="form-control" id="enteredPassword" required>
+                </div>
+                <div class="col-12" style="text-align: center;">
+                    <button class="btn" type="button" onclick="logIn()">Log In</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="dashboard">
+            <form class="row g-3" id="dashboard-form">
+                <h1 class="display-6 form-title" style="text-align: center;">Teachers Dashboard</h1>
+                <h5 style="text-align: center;">Welcome Back <script>document.write(localStorage.getItem("fullName"))</script></h5>
+                <h6 style="text-align: center;">Your Email ID : <script>document.write(localStorage.getItem("email"))</script></h6>
+    
+                <h5>Change Password</h5>   
+                <div class="col-md-12">
+                    <label for="password">Old Password</label>
+                    <input type="password" class="form-control" id="oldpassword" required>
+                    <div class="invalid-feedback" id="oldpassword-invalid">
+                        Please enter correct password
+                    </div>
+                </div>
+    
+                <div class="col-md-12">
+                    <label for="password">New Password</label>
+                    <input type="password" class="form-control" id="newpassword" required>
+                    <div class="invalid-feedback" id="newpassword-invalid">
+                        Please enter password
+                    </div>
+                </div>
+    
+                <div class="col-md-12">
+                    <label for="confirmPassword">Confirm New Password</label>
+                    <input type="password" class="form-control" id="confirmNewPassword" required>
+                    <div class="invalid-feedback" id="confirmNewPassword-invalid">
+                        Password does not match !
+                    </div>
+                </div>
+    
+                <div class="col-12 btn-flex">
+                    <button class="btn" type="button" onclick="change()">Change</button>
+                    <button class="btn" type="button" onclick="logout()">Logout</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
