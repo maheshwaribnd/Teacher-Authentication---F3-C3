@@ -11,10 +11,10 @@ const signUp = (isSummit = false) => {
     let tnC = document.getElementById('t-and-c').checked
     let error = false;
 
-    let setFullName = localStorage.setItem('fullname', fullName)
-    let setEmail = localStorage.setItem('email', email)
-    let setPassword = localStorage.setItem('password', password)
-    let setConfirmPassword = localStorage.setItem('confirmPassword', confirmPassword)
+    // let setFullName = localStorage.setItem('fullname', fullName)
+    // let setEmail = localStorage.setItem('email', email)
+    // let setPassword = localStorage.setItem('password', password)
+    // let setConfirmPassword = localStorage.setItem('confirmPassword', confirmPassword)
 
     userDetails = {
         fullName: "",
@@ -23,7 +23,7 @@ const signUp = (isSummit = false) => {
         confirmPassword: ""
     }
 
-    // localStorage.setItem('userDetails', JSON.stringify(userDetails))
+    localStorage.setItem('userDetails', JSON.stringify(userDetails))
 
     if (isSummit) {
         GlobalSubmit = true;
