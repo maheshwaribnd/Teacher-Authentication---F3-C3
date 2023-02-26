@@ -119,8 +119,8 @@ const logIn = () => {
         alert('Access Granted !')
         // changeNavLinks(requiredUser)
         document.getElementById("dashboard").style.display = "block"
-        document.getElementById('dashboard').innerHTML = `<h5>Welcome Back, ${getDetails.fullName}</h5>`
-        document.getElementById('dashboard').innerHTML = `<h6>Your Email ID : ${getDetails.email}</h6>`
+         document.getElementById('welcome-back').innerHTML = `Welcome Back, ${getDetails.fullName}`
+         document.getElementById('email-id').innerHTML = `Your Email ID : ${getDetails.email}`
 
         document.getElementById("log-In").style.display = "none"
         document.getElementById("sign-Up").style.display = "none"
