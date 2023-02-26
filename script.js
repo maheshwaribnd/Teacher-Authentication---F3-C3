@@ -17,10 +17,10 @@ const signUp = (isSummit = false) => {
     // let setConfirmPassword = localStorage.setItem('confirmPassword', confirmPassword)
 
     userDetails = {
-        fullName: "",
-        email: "",
-        password: "",
-        confirmPassword: ""
+        fullName,
+        email,
+        password,
+        confirmPassword
     }
 
     localStorage.setItem('userDetails', JSON.stringify(userDetails))
@@ -79,9 +79,7 @@ const signUp = (isSummit = false) => {
     }
 
     if (isSummit && !error) {
-        // USER_DETAILS.push(userDetails)
-        // console.log(USER_DETAILS)
-
+    
         alert('Sign Up Successfully!');
         document.getElementById("sign-up-form").reset();
         console.log(document.getElementById("log-In"),"1");
@@ -108,8 +106,9 @@ const logIn = () => {
         error = true
     }
 
-    localStorage.getItem(userDetails)
-    let requiredUser = (userDetails.email === enteredEmail && userDetails.password === enteredEmail)
+    let getDetails = JSON.parse(localStorage.getItem("userDetails"))
+    console.log(getDetails, enteredEmail, enteredPassword)
+    let requiredUser = (getDetails.email === enteredEmail && getDetails.password === enteredPassword)
     // let requiredUser = localStorage.getItem(USER_DETAILS)
     // let requiredUser = localStorage.getItem(USER_DETAILS.find(user => user.email === enteredEmail && user.password === enteredPassword))
     // let requiredUser = USER_DETAILS.find(user => user.email === enteredPassword && user.password === enteredPassword)
@@ -118,10 +117,10 @@ const logIn = () => {
     if (requiredUser) {
         console.log(userDetails)
         alert('Access Granted !')
-        changeNavLinks(requiredUser)
+        // changeNavLinks(requiredUser)
         document.getElementById("dashboard").style.display = "block"
-        // document.getElementById('dashboard').innerHTML = `<h5>Welcome Back, ${fullName}</h5>`
-        // document.getElementById('dashboard').innerHTML = `<h6>Your Email ID :, ${email}</h6>`
+        document.getElementById('dashboard').innerHTML = `<h5>Welcome Back, ${getDetails.fullName}</h5>`
+        document.getElementById('dashboard').innerHTML = `<h6>Your Email ID : ${getDetails.email}</h6>`
 
         document.getElementById("log-In").style.display = "none"
         document.getElementById("sign-Up").style.display = "none"
@@ -188,11 +187,11 @@ const goToSignOut = () => {
 changeNavLinks = (currentUser) => {
     console.log(currentUser)
     let { fullName } = currentUser
-    document.getElementById('sign-up-nav-link').style.display = 'none'
+    // document.getElementById('sign-up-nav-link').style.display = 'none'
     document.getElementById('log-in-nav-link').style.display = 'none'
 
     document.getElementById('profile-link').style.display = 'block'
     document.getElementById('log-out-nav-link').style.display = 'block'
 
-    document.getElementById('profile-link').innerText = `Hi, ${fullName}`
+    document.getElementById('profile-link').innerText = `Hi, ${getDetails.fullName}`
 }
